@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effects of Water Pollution on the Ecosystem</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            /* White background */
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            height: 150vh;
+            /* Slightly more than one viewport for smoother scrolling */
+        }
+
+        .image-split {
+            position: fixed;
+            width: 100%;
+            height: 50vh;
+            left: 0;
+            overflow: hidden;
+            transition: transform 1s ease-out, opacity 1s ease-out;
+        }
+
+        .top-half {
+            top: 0;
+            transform: translateY(0);
+        }
+
+        .bottom-half {
+            bottom: 0;
+            transform: translateY(0);
+            object-fit: cover;
+        }
+
+        .image-split img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            text-align: center;
+            transition: opacity 1s ease-in-out;
+        }
+
+
+        .parent {
+            border: 1px solid black;
+            margin: 1rem;
+            padding: 2rem 2rem;
+            text-align: center;
+        }
+
+        .child {
+            display: inline-block;
+            border: 1px solid black;
+            padding: 1rem 1rem;
+            vertical-align: middle;
+        }
+
+        .hidden-up {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .hidden-down {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .revealed {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Top Half of the Image -->
+        <div class="image-split top-half">
+            <img src="water.jpg" alt="Ocean Top Half" style="object-fit: cover;">
+        </div>
+
+        <!-- Bottom Half of the Image (showing bottom of the original image) -->
+        <div class="image-split bottom-half">
+            <img src="bottles.jpg" alt="Ocean Bottom Half" style="object-fit: cover;">
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class='child'>
+                <h1>testo lato sinistro</h1>
+            </div>
+            <div class='child'>
+                <h1>testo lato destro</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("scroll", () => {
+            const topHalf = document.querySelector(".top-half");
+            const bottomHalf = document.querySelector(".bottom-half");
+            const mainContent = document.querySelector(".main-content");
+
+            const scrollPosition = window.scrollY;
+            const threshold = window.innerHeight / 2; // Trigger halfway down the page
+
+            // Open top and bottom halves
+            if (scrollPosition > threshold) {
+                topHalf.classList.add("hidden-up");
+                bottomHalf.classList.add("hidden-down");
+                mainContent.classList.add("revealed");
+            } else {
+                topHalf.classList.remove("hidden-up");
+                bottomHalf.classList.remove("hidden-down");
+                mainContent.classList.remove("revealed");
+            }
+        });
+    </script>
+</body>
+
+</html>
